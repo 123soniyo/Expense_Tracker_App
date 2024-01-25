@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker App</title>
+</head>
+<body>
+    <form onsubmit="saveToLocalStorage(event)">
+        <label for="expenseamount">Choose expenseamount:</label>
+        <input type="number" name="expenseamount" id="expenseamount" required>
+
+        <label for="description"> Choose description:</label>
+        <input type="text" name="description" id="description" required>
+
+        <label for="category">Choose a category:</label>
+        <input type="select" name="category" id="category" required>
+
+        <button type="submit">Add Expense</button>
+    </form>
+
+    <ul id="expense-item"></ul>
+</body>
+
+<script src="logic.js"></script>
+</html>
