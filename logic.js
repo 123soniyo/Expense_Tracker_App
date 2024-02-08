@@ -1,13 +1,18 @@
-document.addEventListener('DOMContentLoaded', function () {
+// Retrieving Data From Local Storage
+window.addEventListener('DOMContentLoaded', function () {
     // Load existing data from local storage on page load
-    const storedData = JSON.parse(localStorage.getItem('Expense-Tracker'));
-    if (storedData) {
-        showExpenseAmount(storedData);
+    for (let key in localStorage) {
+        if (localStorage.hasOwnProperty(key)) {
+            const storedData = JSON.parse(localStorage.getItem(key));
+            if (storedData) {
+                showExpenseAmount(storedData);
+            }
+            else{
+                console.log('Error.......')
+            }
+        }
     }
 });
-
-
-
 
 
 function saveToLocalStorage(event){
@@ -25,11 +30,12 @@ function saveToLocalStorage(event){
         }
 
         // save to the local storage
-        localStorage.setItem('Expense-Tracker', JSON.stringify(obj));
+        localStorage.setItem(obj.expenseamount, JSON.stringify(obj));
         showExpenseAmount(obj)
 
     }
 
+    
     function showExpenseAmount(obj){
         const parentele= document.getElementById('expense-item');
         const childele=document.createElement('li');
@@ -48,12 +54,12 @@ function saveToLocalStorage(event){
         // delete expense from screen as well as local storage
         deletebutton.onclick=()=>{
             parentele.removeChild(childele);
-            localStorage.removeItem('Expense-Tracker');
+            localStorage.removeItem(obj.expenseamount);
         }
 
          //edit user details
          editbutton.onclick=()=>{
-            localStorage.removeItem('Expense-Tracker')
+            localStorage.removeItem(obj.expenseamount)
             parentele.removeChild(childele)
             document.getElementById('expenseamount').value=obj.expenseamount
             document.getElementById('description').value=obj.description
